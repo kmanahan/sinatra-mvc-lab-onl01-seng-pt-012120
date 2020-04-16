@@ -3,19 +3,9 @@ class PigLatinizer
   def initialize(word)
     @word = word
   end 
-  
-  def piglatinize(string)
-    a = string.split(" ")
-    b = a.map {|word| piglatinize_word(word)}
-    b.join(" ")
-  end
-  
-  def piglatinize_word(word)
-    first_letter = word[0].downcase
-    if first_letter == "a" || first_letter == "e" || first_letter == "i" || first_letter == "o" || first_letter == "u"
-        # piglatinize word that starts with a vowel
-    else
-        # piglatinize word that starts with a consonant
-    end
+ def pig_latin(word)
+  prefix = word[0, %w(a e i o u).map{|vowel|
+    "#{word}aeiou".index(vowel)}.min]
+  "#{word[prefix.length..-1]}#{prefix}ay"
 end
 end 
